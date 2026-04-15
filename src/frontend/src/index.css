@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Inter", "Playfair Display", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --radius: 0.625rem;
+
+    /* AV Online Services Brand Colors — OKLCH */
+    /* Primary Blue #1A56DB → oklch(0.48 0.22 264) */
+    /* Dark Navy #0F2460 → oklch(0.22 0.14 265) */
+    /* Teal #06B6D4 → oklch(0.71 0.15 213) */
+    /* Teal Light #22D3EE → oklch(0.80 0.14 212) */
+
+    --background: 0.975 0.002 248;
+    --foreground: 0.18 0.05 258;
+    --card: 1.0 0 0;
+    --card-foreground: 0.18 0.05 258;
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.18 0.05 258;
+
+    --primary: 0.2 0.1 264;
+    --primary-foreground: 1.0 0 0;
+
+    --secondary: 0.22 0.14 265;
+    --secondary-foreground: 1.0 0 0;
+
+    --muted: 0.95 0.01 240;
+    --muted-foreground: 0.5 0.04 255;
+
+    /* Accent now = Teal instead of gold */
+    --accent: 0.71 0.15 213;
+    --accent-foreground: 0.22 0.14 265;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.88 0.02 248;
+    --input: 0.88 0.02 248;
+    --ring: 0.2 0.1 264;
+
+    --chart-1: 0.48 0.22 264;
+    --chart-2: 0.71 0.15 213;
+    --chart-3: 0.22 0.14 265;
+    --chart-4: 0.65 0.18 264;
+    --chart-5: 0.8 0.14 212;
+
+    --sidebar: 0.98 0 0;
+    --sidebar-foreground: 0.18 0.05 258;
+    --sidebar-primary: 0.2 0.1 264;
+    --sidebar-primary-foreground: 1.0 0 0;
+    --sidebar-accent: 0.95 0.01 240;
+    --sidebar-accent-foreground: 0.22 0.14 265;
+    --sidebar-border: 0.88 0.02 248;
+    --sidebar-ring: 0.2 0.1 264;
+
+    /* Brand-specific tokens — Teal replaces gold */
+    --brand-blue: oklch(0.2 0.1 264);
+    --brand-navy: oklch(0.18 0.1 265);
+    --brand-teal: oklch(0.71 0.15 213);
+    --brand-teal-light: oklch(0.8 0.14 212);
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .text-brand-blue {
+    color: var(--brand-blue);
+  }
+
+  .text-brand-navy {
+    color: var(--brand-navy);
+  }
+
+  .text-brand-teal {
+    color: var(--brand-teal);
+  }
+
+  .bg-brand-blue {
+    background-color: var(--brand-blue);
+  }
+
+  .bg-brand-navy {
+    background-color: var(--brand-navy);
+  }
+
+  .bg-brand-teal {
+    background-color: var(--brand-teal);
+  }
+
+  .border-brand-teal {
+    border-color: var(--brand-teal);
+  }
+
+  .teal-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(0.71 0.15 213),
+      oklch(0.8 0.14 212),
+      oklch(0.71 0.15 213)
+    );
+  }
+
+  .navy-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(0.22 0.14 265),
+      oklch(0.3 0.18 264)
+    );
+  }
+
+  .blue-navy-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(0.22 0.14 265) 0%,
+      oklch(0.35 0.2 264) 50%,
+      oklch(0.22 0.14 265) 100%
+    );
+  }
+
+  .shadow-teal {
+    box-shadow: 0 4px 24px oklch(0.71 0.15 213 / 0.25);
+  }
+
+  .shadow-blue {
+    box-shadow: 0 4px 24px oklch(0.48 0.22 264 / 0.2);
+  }
+
+  .shadow-elevated {
+    box-shadow: 0 8px 32px oklch(0.22 0.14 265 / 0.15);
+  }
+
+  /* Card entrance animation */
+  .card-fade-in {
+    animation: cardFadeIn 0.4s ease-out forwards;
+  }
+
+  @keyframes cardFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Staggered card delays */
+  .card-fade-in:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .card-fade-in:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .card-fade-in:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .card-fade-in:nth-child(4) {
+    animation-delay: 0.25s;
+  }
+  .card-fade-in:nth-child(5) {
+    animation-delay: 0.3s;
+  }
+  .card-fade-in:nth-child(6) {
+    animation-delay: 0.35s;
+  }
+  .card-fade-in:nth-child(7) {
+    animation-delay: 0.4s;
+  }
+
+  /* Pulse animation for WhatsApp button */
+  .pulse-soft {
+    animation: pulseSoft 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulseSoft {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 oklch(0.48 0.22 264 / 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 8px oklch(0.48 0.22 264 / 0);
+    }
+  }
+
+  /* Hover scale lift */
+  .hover-lift {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Teal accent border utilities (replaces gold) */
+  .border-accent-top {
+    border-top: 3px solid oklch(0.71 0.15 213);
+  }
+
+  .border-accent-left {
+    border-left: 3px solid oklch(0.71 0.15 213);
+  }
+}
